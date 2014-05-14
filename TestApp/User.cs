@@ -23,6 +23,11 @@ namespace TestApp
 
         #region " Methods "
 
+        /// <summary>
+        /// Calculate the Age of the user from the date of birth.
+        /// If Invalid date of birth is set throw an exception.
+        /// </summary>
+        /// <returns></returns>
         public int Age()
         {
             if (!DateOfBirth.HasValue || DateOfBirth.Value == DateTime.MinValue || DateOfBirth == DateTime.MaxValue)
