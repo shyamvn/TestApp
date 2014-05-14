@@ -5,6 +5,9 @@ using System.Text;
 
 namespace TestApp
 {
+    /// <summary>
+    /// Interface for creating user object
+    /// </summary>
     public interface IUser
     {
         string FirstName{get;set;}

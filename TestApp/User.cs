@@ -6,13 +6,22 @@ using NUnit.Framework;
 
 namespace TestApp
 {
+    /// <summary>
+    /// User object
+    /// </summary>
     public class User:IUser
     {
+        #region " Properties "
         public string FirstName{get;set;}
 
         public string Surname { get; set; }
 
         public DateTime? DateOfBirth { get; set; }
+        
+        #endregion
+
+
+        #region " Methods "
 
         public int Age()
         {
@@ -23,12 +32,18 @@ namespace TestApp
             return DateTime.Now.Year - DateOfBirth.Value.Year; 
         }
 
+        #endregion
+
+        #region " Constructors "
+
         public User(string firstName, string surname, DateTime? dateOfBirth) {
 
             FirstName = firstName;
             Surname = surname;
             DateOfBirth = dateOfBirth;
-         }
+        }
+
+        #endregion
 
     }
 }
@@ -36,11 +51,13 @@ namespace TestApp
 
 namespace TestUserObject
 {
-
+    /// <summary>
+    /// Base class for the user object test
+    /// </summary>
     [TestFixture]
     public class BaseUserTest
     {
-        protected TestApp.User userObject;
+        protected TestApp.IUser userObject;
 
         [SetUp]
         protected virtual void Init(){
@@ -48,6 +65,9 @@ namespace TestUserObject
         }
     }
 
+    /// <summary>
+    /// Test cases for user object
+    /// </summary>
     [TestFixture]
     public class TestUserObject:BaseUserTest {
 
@@ -57,6 +77,9 @@ namespace TestUserObject
             base.Init();
         }
 
+        /// <summary>
+        /// Test if the user object is created with the correct values.
+        /// </summary>
         [Test]
         public void TestUserDetails_001(){
 
@@ -65,6 +88,9 @@ namespace TestUserObject
             Assert.AreEqual(44, userObject.Age());
         }
 
+        /// <summary>
+        /// Test for Invalid date of birth 
+        /// </summary>
         [Test]
         [ExpectedException(typeof(Exception), ExpectedMessage = "Invalid DateOfBirth")]
         public void InvalidDateOfBirthException_002() {
